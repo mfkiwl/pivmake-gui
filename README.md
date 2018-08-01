@@ -1,2 +1,6 @@
 # pivmake-gui
-Make particle image velocimetry using a graphic user interface
+List a set of files
+
+    qmake PREFIX=/another/path
+
+    make

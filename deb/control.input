@@ -1,0 +1,11 @@
+Package: QMAKE_VAR_APPFILENAME
+Source: QMAKE_VAR_APPFILENAME
+Version: QMAKE_VAR_APPVERSION
+Maintainer: Fernando Pujaico Rivera <fernando.pujaico.rivera@gmail.com>
+Section: education, misc
+Homepage: http://github.com/trucomanx/
+Architecture: QMAKE_VAR_APPARCH
+Priority: optional
+Depends: QMAKE_VAR_APPDEPENDENCES
+Description: QMAKE_VAR_APPSUMMARY
+ QMAKE_VAR_APPDESCRIPTION

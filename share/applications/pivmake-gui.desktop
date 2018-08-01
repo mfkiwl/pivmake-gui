@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=PivMake-Gui
+Version=1.0
+Exec=pivmake-gui
+Comment=Make PIV over a set of images
+Icon=/usr/share/pivmake-gui/icons/pivmake-gui.png
+Type=Application
+Terminal=false
+StartupNotify=true
+Encoding=UTF-8
+Categories=Education;
+
+Name[pt_BR]=pivmake-gui.desktop
