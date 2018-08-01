@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MYLIBRARY=libpdsdatafunc
+MYLIBRARY=libpdsdic
 
 if [ -z $1 ]
 then

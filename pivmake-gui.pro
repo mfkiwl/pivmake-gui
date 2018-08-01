@@ -35,16 +35,36 @@ DEFINES += QT_DEPRECATED_WARNINGS
 ## EXTRA LIBS SCRIPT
 ################################################################################
 
+#LIBPDSDATAFUNC
 extralibpdsdatafunc.target   = $${OUT_PWD}/extras/include/pds/pdsdatafunc.h
 extralibpdsdatafunc.commands = $${PWD}/scripts/getpdsdatafunc.sh "$${OUT_PWD}/extras"
 extralibpdsdatafunc.depends  =
-QMAKE_EXTRA_TARGETS += extralibpdsdatafunc
+QMAKE_EXTRA_TARGETS         += extralibpdsdatafunc
+LIBS                        += $${OUT_PWD}/extras/lib/libpdsdatafunc.a
+PRE_TARGETDEPS              += $${OUT_PWD}/extras/include/pds/pdsdatafunc.h
 
+#LIBPDSRA
+extralibpdsra.target   = $${OUT_PWD}/extras/include/pds/pdsra.h
+extralibpdsra.commands = $${PWD}/scripts/getpdsra.sh "$${OUT_PWD}/extras"
+extralibpdsra.depends  =
+QMAKE_EXTRA_TARGETS   += extralibpdsra
+LIBS                  += $${OUT_PWD}/extras/lib/libpdsra.a
+PRE_TARGETDEPS        += $${OUT_PWD}/extras/include/pds/pdsra.h
+
+#LIBPDSDIC
+extralibpdsdic.target   = $${OUT_PWD}/extras/include/pds/pdsdic.h
+extralibpdsdic.commands = $${PWD}/scripts/getpdsdic.sh "$${OUT_PWD}/extras"
+extralibpdsdic.depends  = extralibpdsra
+QMAKE_EXTRA_TARGETS    += extralibpdsdic
+LIBS                   += $${OUT_PWD}/extras/lib/libpdsdic.a
+PRE_TARGETDEPS         += $${OUT_PWD}/extras/include/pds/pdsdic.h
+
+# ADDING ALL LIBS
 INCLUDEPATH += $${OUT_PWD}/extras/include
-LIBS +=  $${OUT_PWD}/extras/lib/libpdsdatafunc.a
 
 
-PRE_TARGETDEPS = $${OUT_PWD}/extras/include/pds/pdsdatafunc.h
+
+
 
 ################################################################################
 ## PREFIX SCRIPT

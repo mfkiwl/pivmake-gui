@@ -51,7 +51,10 @@
           <item>
            <layout class="QGridLayout" name="gridLayout">
             <item row="0" column="3">
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="pushButton_create_listfilesdat">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Create a file list data file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>Create</string>
               </property>
@@ -62,7 +65,11 @@
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEdit"/>
+             <widget class="QLineEdit" name="lineEdit_listfilesdat">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The path of text file with the image list. Inside this file exist a image file path by line. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
             </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label">
@@ -72,7 +79,10 @@
              </widget>
             </item>
             <item row="0" column="2">
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="pushButton_choose_listfilesdat">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose a file list data file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>Choose</string>
               </property>
@@ -90,10 +100,17 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEdit_2"/>
+             <widget class="QLineEdit" name="lineEdit_listregionsdat">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The path of text file with the region list. Inside this file is defined a region by line. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
             </item>
             <item row="1" column="2">
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="pushButton_choose_listregionsdat">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose a region list data file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>Choose</string>
               </property>
@@ -104,7 +121,10 @@
              </widget>
             </item>
             <item row="1" column="3">
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="pushButton_create_listregionsdat">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Create a region list data file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>Create</string>
               </property>
@@ -126,9 +146,12 @@
           <item>
            <layout class="QGridLayout" name="gridLayout_2">
             <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEdit_4">
+             <widget class="QLineEdit" name="lineEdit_output_filename_pattern">
               <property name="enabled">
                <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The output filename pattern.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="text">
                <string>listregions%d.dat</string>
@@ -136,17 +159,27 @@
              </widget>
             </item>
             <item row="0" column="2">
-             <widget class="QCheckBox" name="checkBox">
+             <widget class="QCheckBox" name="checkBox_enable_filename_pattern">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable the selection of output filename pattern.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string/>
               </property>
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEdit_3"/>
+             <widget class="QLineEdit" name="lineEdit_output_directory">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The path where will be located all the output region list files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
             </item>
             <item row="1" column="2">
-             <widget class="QPushButton" name="pushButton_5">
+             <widget class="QPushButton" name="pushButton_choose_output_directory">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Choose a output directory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>Choose</string>
               </property>
@@ -180,7 +213,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_6">
+           <widget class="QPushButton" name="pushButton_generate_outfiles">
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tracking the regions and generate the output files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
@@ -205,14 +238,21 @@
         <item>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit_5">
+           <widget class="QLineEdit" name="lineEdit_program_listfiles">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The program filename &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listfiles&amp;quot; &lt;/span&gt;or &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listfiles.exe&amp;quot;&lt;/span&gt; if It is in the system path. In other cases should be wrote the complete path of the program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string/>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEdit_6"/>
+           <widget class="QLineEdit" name="lineEdit_program_listregions">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The program filename &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listregions&amp;quot; &lt;/span&gt;or &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listregions.exe&amp;quot;&lt;/span&gt; if It is in the system path. In other cases should be wrote the complete path of the program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label_8">
@@ -229,9 +269,12 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QPushButton" name="pushButton_7">
+           <widget class="QPushButton" name="pushButton_find_program_listfiles">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Find and select the &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listfiles&amp;quot;&lt;/span&gt; or &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listfiles.exe&amp;quot;&lt;/span&gt; program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
-             <string>Select</string>
+             <string>Find</string>
             </property>
             <property name="icon">
              <iconset resource="../pivmake-gui.qrc">
@@ -240,9 +283,12 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QPushButton" name="pushButton_8">
+           <widget class="QPushButton" name="pushButton_find_program_listregions">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Find and select the &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listregions&amp;quot;&lt;/span&gt; or &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listregions.exe&amp;quot;&lt;/span&gt; program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
-             <string>Select</string>
+             <string>Find</string>
             </property>
             <property name="icon">
              <iconset resource="../pivmake-gui.qrc">
@@ -277,7 +323,7 @@
      <x>0</x>
      <y>0</y>
      <width>711</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
