@@ -154,7 +154,7 @@
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The output filename pattern.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="text">
-               <string>listregions%d.dat</string>
+               <string>listregionsdata%d.listregions</string>
               </property>
              </widget>
             </item>
@@ -323,7 +323,7 @@
      <x>0</x>
      <y>0</y>
      <width>711</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

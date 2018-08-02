@@ -40,6 +40,10 @@ private slots:
 
     void on_pushButton_create_listregionsdat_clicked();
 
+    void on_lineEdit_listfilesdat_editingFinished();
+
+    void on_lineEdit_listregionsdat_editingFinished();
+
 private:
     Ui::MainWindow *ui;
 };

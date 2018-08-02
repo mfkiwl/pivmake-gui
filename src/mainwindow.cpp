@@ -145,12 +145,12 @@ void MainWindow::on_pushButton_choose_listfilesdat_clicked()
         listfilesdat =  QFileDialog::getOpenFileName(this,
                                                      tr("Select the listfiles dat file"),
                                                      QDir::currentPath(),
-                                                     tr("Listfiles dat file (*.dat);;Listfiles dat file (*.listfiles);;Any file (*)"));
+                                                     tr("Listfiles dat file (*.listfiles);;Generic dat file (*.dat);;Any file (*)"));
     else
         listfilesdat =  QFileDialog::getOpenFileName(this,
                                                      tr("Select the listfiles dat file"),
                                                      ui->lineEdit_listfilesdat->text(),
-                                                     tr("Listfiles dat file (*.dat);;Listfiles dat file (*.listfiles);;Any file (*)"));
+                                                     tr("Listfiles dat file (*.listfiles);;Generic dat file (*.dat);;Any file (*)"));
 
     if(listfilesdat.length()==0)
     {
@@ -163,6 +163,8 @@ void MainWindow::on_pushButton_choose_listfilesdat_clicked()
     {
         ui->lineEdit_listfilesdat->setText(listfilesdat);
     }
+
+    on_lineEdit_listfilesdat_editingFinished();
 }
 
 void MainWindow::on_pushButton_choose_listregionsdat_clicked()
@@ -172,12 +174,12 @@ void MainWindow::on_pushButton_choose_listregionsdat_clicked()
         listregionsdat =  QFileDialog::getOpenFileName(this,
                                                        tr("Select the listregions dat file"),
                                                        QDir::currentPath(),
-                                                       tr("Listregions dat file (*.dat);;Listregions dat file (*.listregions);;Any file (*)"));
+                                                       tr("Listregions dat file (*.listregions);;Generic dat file (*.dat);;Any file (*)"));
     else
         listregionsdat =  QFileDialog::getOpenFileName(this,
                                                        tr("Select the listregions dat file"),
                                                        ui->lineEdit_listregionsdat->text(),
-                                                       tr("Listregions dat file (*.dat);;Listregions dat file (*.listregions);;Any file (*)"));
+                                                       tr("Listregions dat file (*.listregions);;Generic dat file (*.dat);;Any file (*)"));
 
     if(listregionsdat.length()==0)
     {
@@ -190,6 +192,8 @@ void MainWindow::on_pushButton_choose_listregionsdat_clicked()
     {
         ui->lineEdit_listregionsdat->setText(listregionsdat);
     }
+
+    on_lineEdit_listregionsdat_editingFinished();
 }
 
 void MainWindow::on_pushButton_choose_output_directory_clicked()
@@ -337,17 +341,29 @@ void MainWindow::on_pushButton_create_listfilesdat_clicked()
     {
         listfilesdat =  QFileDialog::getSaveFileName(this,
                                                        tr("Save the listfiles dat file"),
-                                                       QDir::currentPath()+QDir::separator()+ QString("listfiles.dat"),
-                                                       tr("listfiles dat file (*.dat);;listfiles dat file (*.listfiles);;Any file (*)"));
-        QFileInfo fileInfo1(listfilesdat);
-        searchlistfilesdir=fileInfo1.dir().path();
+                                                       QDir::currentPath()+QDir::separator()+ QString("listfilesdata.listfiles"),
+                                                       tr("Listfiles dat file (*.listfiles);;Generic dat file (*.dat);;Any file (*)"));
+        QString tmp=listfilesdat;
+        QByteArray ba = tmp.toLatin1();
+        const char *c_str2 = ba.data();
+
+        if(pds_get_number_of_significative_lines(c_str2)<2)
+        {
+            QFileInfo fileInfo1(listfilesdat);
+            searchlistfilesdir=fileInfo1.dir().path();
+        }
+        else
+        {
+            QFileInfo fileInfo1(pds_string_new_significative_line_of_file(c_str2,1));
+            searchlistfilesdir=fileInfo1.dir().path();
+        }
     }
     else
     {
         listfilesdat =  QFileDialog::getSaveFileName(this,
                                                        tr("Save the listfiles dat file"),
                                                        ui->lineEdit_listfilesdat->text(),
-                                                       tr("listfiles dat file (*.dat);;listfiles dat file (*.listfiles);;Any file (*)"));
+                                                       tr("Listfiles dat file (*.listfiles);;Generic dat file (*.dat);;Any file (*)"));
         QString tmp=ui->lineEdit_listfilesdat->text();
         QByteArray ba = tmp.toLatin1();
         const char *c_str2 = ba.data();
@@ -382,7 +398,7 @@ void MainWindow::on_pushButton_create_listfilesdat_clicked()
 
     }
 
-
+    on_lineEdit_listfilesdat_editingFinished();
 }
 
 void MainWindow::on_pushButton_create_listregionsdat_clicked()
@@ -396,15 +412,15 @@ void MainWindow::on_pushButton_create_listregionsdat_clicked()
 
         listregionsdat =  QFileDialog::getSaveFileName(this,
                                                        tr("Save the listregions dat file"),
-                                                       basedir.dir().path()+QDir::separator()+ QString("listregions.dat"),
-                                                       tr("listregions dat file (*.dat);;listregions dat file (*.listregions);;Any file (*)"));
+                                                       basedir.dir().path()+QDir::separator()+ QString("listregionsdata.listregions"),
+                                                       tr("Listregions dat file (*.listregions);;Generic dat file (*.dat);;Any file (*)"));
     }
     else
     {
         listregionsdat =  QFileDialog::getSaveFileName(this,
                                                        tr("Save the listregions dat file"),
                                                        ui->lineEdit_listregionsdat->text(),
-                                                       tr("listregions dat file (*.dat);;listregions dat file (*.listregions);;Any file (*)"));
+                                                       tr("listregions dat file (*.listregions);;Generic dat file (*.dat);;Any file (*)"));
 
     }
 
@@ -443,5 +459,33 @@ void MainWindow::on_pushButton_create_listregionsdat_clicked()
 
     }
 
+    on_lineEdit_listregionsdat_editingFinished();
+}
 
+void MainWindow::on_lineEdit_listfilesdat_editingFinished()
+{
+    if(ui->lineEdit_listfilesdat->text().length()!=0)
+    if(ui->lineEdit_output_directory->text().length()==0)
+    {
+        QString tmp=ui->lineEdit_listfilesdat->text();
+        QByteArray ba = tmp.toUtf8();
+        const char *c_str2 = ba.data();
+        char *cad=pds_get_dirname(c_str2);
+        ui->lineEdit_output_directory->setText(QString(cad)+QDir::separator()+QString("output"));
+        free(cad);
+    }
+}
+
+void MainWindow::on_lineEdit_listregionsdat_editingFinished()
+{
+    if(ui->lineEdit_listregionsdat->text().length()!=0)
+    if(ui->lineEdit_output_directory->text().length()==0)
+    {
+        QString tmp=ui->lineEdit_listregionsdat->text();
+        QByteArray ba = tmp.toUtf8();
+        const char *c_str2 = ba.data();
+        char *cad=pds_get_dirname(c_str2);
+        ui->lineEdit_output_directory->setText(QString(cad)+QDir::separator()+QString("output"));
+        free(cad);
+    }
 }
