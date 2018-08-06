@@ -98,10 +98,19 @@ message("The current 'make install' path is $$PREFIX")
 ################################################################################
 
 SOURCES += src/main.cpp\
-        src/mainwindow.cpp
+        src/mainwindow.cpp \
+        src/mythread.cpp \
+    src/mainwindow_check.cpp \
+    src/mainwindow_get_program.cpp \
+    src/mainwindow_all_generate.cpp \
+    src/mainwindow_all_configuration.cpp \
+    src/mainwindow_all_listfilesdat.cpp \
+    src/mainwindow_all_listregionsdat.cpp \
+    src/mainwindow_all_output.cpp
 
 INCLUDEPATH += headers
-HEADERS  += headers/mainwindow.h 
+HEADERS  += headers/mainwindow.h \ 
+            headers/mythread.h
 
 
 FORMS    += ui/mainwindow.ui

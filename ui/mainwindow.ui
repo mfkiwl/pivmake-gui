@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>711</width>
-    <height>475</height>
+    <height>497</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -67,7 +67,7 @@
             <item row="0" column="1">
              <widget class="QLineEdit" name="lineEdit_listfilesdat">
               <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The path of text file with the image list. Inside this file exist a image file path by line. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field contain the path of a text file with the list of images. Inside this file exist one image file path by line. &lt;/p&gt;&lt;p&gt;It is strongly recommended that the text file with the list of images has a filename extension &lt;span style=&quot; font-weight:600;&quot;&gt;*.listfiles&lt;/span&gt;. By example &lt;span style=&quot; font-weight:600;&quot;&gt;listfilesdat.listfiles&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -102,7 +102,7 @@
             <item row="1" column="1">
              <widget class="QLineEdit" name="lineEdit_listregionsdat">
               <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The path of text file with the region list. Inside this file is defined a region by line. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This field contain the path of text file with the list of regions. Inside this file is defined one region by line. &lt;/p&gt;&lt;p&gt;It is strongly recommended that the text file with the list of regions has a filename extension &lt;span style=&quot; font-weight:600;&quot;&gt;*.listregions&lt;/span&gt;. By example &lt;span style=&quot; font-weight:600;&quot;&gt;listregionsdat.listregions&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -151,10 +151,10 @@
                <bool>false</bool>
               </property>
               <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The output filename pattern.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a name=&quot;result_box&quot;/&gt;This field contains the pattern of the output files names. If the pattern is &lt;span style=&quot; font-weight:600;&quot;&gt;listregionsdata&lt;/span&gt;, then the files will have the names:&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;listregionsdata&lt;/span&gt;1.listregions&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;listregionsdata&lt;/span&gt;2.listregions&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;listregionsdata&lt;/span&gt;3.listregions&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="text">
-               <string>listregionsdata%d.listregions</string>
+               <string>listregionsdata</string>
               </property>
              </widget>
             </item>
@@ -171,7 +171,7 @@
             <item row="1" column="1">
              <widget class="QLineEdit" name="lineEdit_output_directory">
               <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The path where will be located all the output region list files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The path where will be located all the output region list files. If the directory not exist, then it is created in the generate process.&lt;/p&gt;&lt;p&gt;&lt;a name=&quot;result_box&quot;/&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;I&lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;t is strongly recommended that this directory be a subdirectory of one of the * .litfiles or * .listregions files (&lt;/span&gt;&lt;a name=&quot;result_box&quot;/&gt;just to keep an order&lt;span style=&quot; font-weight:600;&quot;&gt;). &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -215,10 +215,20 @@
           <item>
            <widget class="QPushButton" name="pushButton_generate_outfiles">
             <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tracking the regions and generate the output files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click here to tracking the regions and generate the output files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>Generate</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QListWidget" name="listWidget"/>
+          </item>
+          <item>
+           <widget class="QProgressBar" name="progressBar">
+            <property name="value">
+             <number>0</number>
             </property>
            </widget>
           </item>
@@ -237,7 +247,14 @@
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="1">
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Color of region:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
            <widget class="QLineEdit" name="lineEdit_program_listfiles">
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The program filename &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listfiles&amp;quot; &lt;/span&gt;or &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listfiles.exe&amp;quot;&lt;/span&gt; if It is in the system path. In other cases should be wrote the complete path of the program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -247,28 +264,28 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="2" column="1">
            <widget class="QLineEdit" name="lineEdit_program_listregions">
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The program filename &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listregions&amp;quot; &lt;/span&gt;or &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listregions.exe&amp;quot;&lt;/span&gt; if It is in the system path. In other cases should be wrote the complete path of the program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
+          <item row="1" column="0">
            <widget class="QLabel" name="label_8">
             <property name="text">
              <string>ListFiles program:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item row="2" column="0">
            <widget class="QLabel" name="label_9">
             <property name="text">
              <string>ListRegions program:</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
+          <item row="1" column="2">
            <widget class="QPushButton" name="pushButton_find_program_listfiles">
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Find and select the &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listfiles&amp;quot;&lt;/span&gt; or &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listfiles.exe&amp;quot;&lt;/span&gt; program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -282,7 +299,21 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Programs</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
            <widget class="QPushButton" name="pushButton_find_program_listregions">
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Find and select the &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listregions&amp;quot;&lt;/span&gt; or &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;listregions.exe&amp;quot;&lt;/span&gt; program.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -296,7 +327,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="7" column="1">
            <spacer name="verticalSpacer">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -308,6 +339,65 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>Output image type:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Output</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>Show region ID</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QComboBox" name="comboBox_output_image_type">
+            <item>
+             <property name="text">
+              <string>PNG - Portable Network Graphics</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>BMP - Bits Maps Protocole</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QPushButton" name="pushButton_color_region">
+            <property name="text">
+             <string>(255,0,0)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QCheckBox" name="checkBox_show_region_id">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
