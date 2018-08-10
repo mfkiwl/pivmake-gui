@@ -22,13 +22,8 @@ TEMPLATE = app
 
 DESTDIR=bin
 CONFIG += release
+win32:CONFIG += console
 
-
-# The following define makes your compiler emit warnings if you use
-# any feature of Qt which as been marked as deprecated (the exact warnings
-# depend on your compiler). Please consult the documentation of the
-# deprecated API in order to know how to port your code away from it.
-DEFINES += QT_DEPRECATED_WARNINGS
 
 
 ################################################################################
@@ -37,7 +32,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 #LIBPDSDATAFUNC
 extralibpdsdatafunc.target   = $${OUT_PWD}/extras/include/pds/pdsdatafunc.h
+win32{
+extralibpdsdatafunc.commands = $${PWD}/scripts/getpdsdatafunc.bat "$${OUT_PWD}\extras"
+}
+unix{
 extralibpdsdatafunc.commands = $${PWD}/scripts/getpdsdatafunc.sh "$${OUT_PWD}/extras"
+}
 extralibpdsdatafunc.depends  =
 QMAKE_EXTRA_TARGETS         += extralibpdsdatafunc
 LIBS                        += $${OUT_PWD}/extras/lib/libpdsdatafunc.a
@@ -135,6 +135,7 @@ win32{
 # DOCS
 documentation.path   = $$PREFIX/share/doc/$${TARGET}
 documentation.files += \
+    share/doc/$${TARGET}/$${TARGET}.md \
     share/doc/$${TARGET}/$${TARGET}.pdf
 
 # ICONS
@@ -151,6 +152,8 @@ INSTALLS    += myapp\
     documentation \
     iconos \
     desktop 
+
+
 
 ################################################################################
 ## DISTRIBUTION RELEASE SCRIPT
@@ -185,14 +188,14 @@ APPDESCRIPTION="A graphic user interface program to make particle image velocime
 
 
 DISTFILES += \
-    scripts/getpdsdatafunc.sh \
+    scripts/* \
     scripts/README.md \
     share/applications/* \
-    share/doc/pivmake-gui/* \
-    share/pivmake-gui/icons/* \
+    share/doc/$${TARGET}/* \
+    share/$${TARGET}/icons/* \
     win/makewin.bat \
     win/README.md \
-    win/pivmake-gui.nsi.input \
+    win/$${TARGET}.nsi.input \
     deb/control.input \
     deb/makedeb.sh \
     deb/README.md \
