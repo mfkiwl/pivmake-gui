@@ -1,3 +1,7 @@
 /pivmake-gui.pro.user
 /deb/control
 /win/pivmake-gui.nsi
+/libpdsdatafunc
+/libpdsdic
+/libpdsra
+/extras

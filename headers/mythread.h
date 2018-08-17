@@ -32,6 +32,8 @@ public:
 
     QString get_listregionsdat_output_filename(QString ,QString ,int );
     QColor get_qcolor_from(double min,double max,double val);
+    bool drawVerticalColorBar(QString filepath,unsigned int W,unsigned int H,double dmin,double dmax );
+
 
     bool save_region_list(QString ,QList<PdsRegionRect> );
     bool save_image_region_list(QString inputfilepath,QString outputfilepath, QList<PdsRegionRect> InputRegionList);
@@ -51,7 +53,8 @@ public:
                                           QString directory,
                                           QString pattern,
                                           QList<PdsRegionRect> RegionListInit,
-                                          QList<PdsRegionRect> RegionListEnd);
+                                          QList<PdsRegionRect> RegionListEnd,
+                                          bool ENABLE_TEXT);
 
     PdsMatrix *matrix_from_image_filepath(QString filepath);
 

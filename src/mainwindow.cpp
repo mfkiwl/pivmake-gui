@@ -46,6 +46,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QPixmap pmp=QPixmap(32,32); pmp.fill(this->color_region);
     icop->addPixmap(pmp,QIcon::Normal,QIcon::On);
     ui->pushButton_color_region->setIcon(*icop);
+
+    this->setWindowTitle(QString(APP_TARGET)+" "+QString(APP_VERSION));
+
 }
 
 MainWindow::~MainWindow()
