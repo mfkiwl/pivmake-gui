@@ -15,7 +15,6 @@ mythread::mythread(QObject *parent):QThread(parent)
     RegionRectList.clear();
     output_filename_pattern.clear();
     output_directory.clear();
-    enable_text=true;
     output_file_format=QString(".png");
 }
 
@@ -50,7 +49,7 @@ void mythread::run()
 
         QString outfilepath=get_listregionsdat_output_filename(output_directory,output_filename_pattern,1);
         save_region_list(outfilepath,OutputRegionList);
-        save_image_region_list(imagepath,outfilepath,OutputRegionList);
+        save_image_region_list(imagepath,outfilepath,OutputRegionList,true);
 
         emit signal_mythread_message_blue(QString(tr("Writing the regions in the file: "))+outfilepath);
 
@@ -86,7 +85,7 @@ void mythread::run()
                 }
                 QString outfilepath=get_listregionsdat_output_filename(output_directory,output_filename_pattern,i+1);
                 save_region_list(outfilepath,OutputRegionList);
-                save_image_region_list(imagepath,outfilepath,OutputRegionList);
+                save_image_region_list(imagepath,outfilepath,OutputRegionList,true);
                 emit signal_mythread_message_blue(QString(tr("Writing the regions in the file: "))+outfilepath);
             }
             else
@@ -109,12 +108,6 @@ void mythread::run()
 bool mythread::set_pen(QPen regionpen)
 {
     RegionPen=regionpen;
-    return true;
-}
-
-bool mythread::set_output_enable_text(bool dat)
-{
-    enable_text=dat;
     return true;
 }
 
@@ -174,7 +167,7 @@ QColor mythread::get_qcolor_from(double min, double max, double val)
     return color;
 }
 
-bool mythread::save_image_region_list(QString inputfilepath,QString outputtextfilepath, QList<PdsRegionRect> InputRegionList)
+bool mythread::save_image_region_list(QString inputfilepath,QString outputtextfilepath, QList<PdsRegionRect> InputRegionList,bool ENABLE_TEXT)
 {
     QImage image;
     image.load(inputfilepath);
@@ -206,7 +199,7 @@ bool mythread::save_image_region_list(QString inputfilepath,QString outputtextfi
         if((width>0) && (height>0) &&(x>=0)&& (y>=0) && ((x+width-1)<W)&& ((y+height-1)<H))
         {
             painter.drawRect(x,y,width,height);
-            if(enable_text==true)
+            if(ENABLE_TEXT ==true)
             {
                 font.setPixelSize(std::min(height,width)*1/2);
                 painter.setFont(font);
@@ -268,7 +261,7 @@ bool mythread::save_image_region_list_distance( QString ImagePath,
         if((width>0) && (height>0) &&(x>=0)&& (y>=0) && ((x+width-1)<W)&& ((y+height-1)<H))
         {
             painter.drawRect(x,y,width,height);
-            //if((enable_text==true)&&(d.at(i)>=0))
+
             if(d.at(i)>=0)
             {
                 font.setPixelSize(std::min(height,width)*1/3);

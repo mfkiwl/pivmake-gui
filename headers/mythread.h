@@ -15,7 +15,6 @@ public:
     QString output_filename_pattern;
     QString output_directory;
     QPen RegionPen;
-    bool enable_text;
     QString output_file_format;
 
     explicit mythread(QObject *parent=0);
@@ -25,7 +24,6 @@ public:
     bool set_output_filename_pattern(QString pattern);
     bool set_output_directory(QString directory);
     bool set_pen(QPen regionpen);
-    bool set_output_enable_text(bool dat);
     bool set_output_file_format(QString ext);
 
 
@@ -36,12 +34,7 @@ public:
 
 
     bool save_region_list(QString ,QList<PdsRegionRect> );
-    bool save_image_region_list(QString inputfilepath,QString outputfilepath, QList<PdsRegionRect> InputRegionList);
-    bool save_image_region_list_trajectory(QString ImagePath,
-                                          QString directory,
-                                          QString pattern,
-                                          QList<PdsRegionRect> RegionListInit,
-                                          QList<PdsRegionRect> RegionListEnd);
+    bool save_image_region_list(QString inputfilepath,QString outputfilepath, QList<PdsRegionRect> InputRegionList,bool ENABLE_TEXT);
 
     bool save_image_region_list_distance( QString ImagePath,
                                           QString directory,

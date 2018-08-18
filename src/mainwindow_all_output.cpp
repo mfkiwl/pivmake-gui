@@ -2,12 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QPalette>
-// #include <QDir>
 #include <QFileDialog>
-
-// #include <QDebug>
-// #include <QScrollBar>
-// #include <pds/pdsdatafunc.h>
 
 
 void MainWindow::on_checkBox_enable_filename_pattern_clicked(bool checked)

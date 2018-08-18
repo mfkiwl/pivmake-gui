@@ -113,8 +113,6 @@ void MainWindow::on_lineEdit_program_listregions_editingFinished()
     if(ui->lineEdit_program_listregions->text().length()==0)
     {
         ui->statusBar->showMessage(tr("WARNING: No listregions program selected"),10000);
-        //if(ui->lineEdit_program_listregions->hasFocus()==false)
-        //launchMessageBox(tr("WARNING: No listregions program selected"),true);
         ENABLE_PROGLISTREGIONS=false;
         ui->pushButton_create_listregionsdat->setEnabled(false);
     }

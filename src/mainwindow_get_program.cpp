@@ -40,6 +40,9 @@ QString MainWindow::get_program_listfiles(QString programpath)
 
 }
 
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+
 QString MainWindow::get_program_listregions(QString programpath)
 {
 
@@ -73,3 +76,42 @@ QString MainWindow::get_program_listregions(QString programpath)
     if(get_program_response(programpath," --help")==true)    return programpath;
     else                                               return QString("");
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+
+#include <QProcess>
+
+bool MainWindow::get_program_response(QString programpath,QString param)
+{
+    if(programpath.length()==0)
+    {
+        return false;
+    }
+    else
+    {
+        QProcess program;
+
+        QString commandToStart= programpath + " "+param;
+        //QStringList environment = program.systemEnvironment();
+        program.start(commandToStart);
+
+        bool started = program.waitForStarted();
+        if (!program.waitForFinished(10000)) // 10 Second timeout
+            program.kill();
+
+        int exitCode = program.exitCode();
+        //QString stdOutput = QString::fromLocal8Bit(program.readAllStandardOutput());
+        //QString stdError = QString::fromLocal8Bit(program.readAllStandardError());
+
+        if((started==true)&&(exitCode==EXIT_SUCCESS))
+        {
+            return true;
+        }
+        else    return false;
+
+    }
+}
+
+

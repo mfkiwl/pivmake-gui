@@ -14,5 +14,6 @@
         <file>share/pivmake-gui/icons/if_compose_1055085.png</file>
         <file>share/pivmake-gui/icons/if_polaroids_1055003.png</file>
         <file>share/pivmake-gui/icons/if_tools_1054957.png</file>
+        <file>share/pivmake-gui/icons/Information_icon.png</file>
     </qresource>
 </RCC>

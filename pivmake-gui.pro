@@ -106,7 +106,11 @@ SOURCES += src/main.cpp\
     src/mainwindow_all_configuration.cpp \
     src/mainwindow_all_listfilesdat.cpp \
     src/mainwindow_all_listregionsdat.cpp \
-    src/mainwindow_all_output.cpp
+    src/mainwindow_all_output.cpp \
+    src/mainwindow_messages.cpp \
+    src/mainwindow_state.cpp \
+    src/mainwindow_enable_widget.cpp \
+    src/mainwindow_action.cpp
 
 INCLUDEPATH += headers
 HEADERS  += headers/mainwindow.h \ 
@@ -160,6 +164,7 @@ INSTALLS    += myapp\
 ################################################################################
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 DEFINES += APP_TARGET=\\\"$$TARGET\\\"
+DEFINES += APP_HOMEPAGE=\\\"https://github.com/trucomanx/pivmake-gui\\\"
 
 unix{
 QMAKE_CLEAN += -r bin
