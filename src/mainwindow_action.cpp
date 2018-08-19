@@ -34,7 +34,10 @@ void MainWindow::on_actionDocumentation_triggered()
                             "doc"+QDir::separator()+
                             APP_TARGET+QDir::separator()+
                             APP_TARGET+".pdf";
-
+#if defined(_WINDOWS_) || defined(_WIN32) || defined(WIN32)
+    strtemp="file:"+strtemp;
+#endif
+qDebug() <<"Opening:"<<strtemp;
     qDebug() << QDesktopServices::openUrl(QUrl(strtemp, QUrl::TolerantMode));
 }
 

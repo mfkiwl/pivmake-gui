@@ -16,13 +16,14 @@ mkdir build
 
 rem ----------------------------------------------------------------------------
 rem ----------------------------------------------------------------------------
-rmdir /S /Q libpdsdatafunc
-bzr branch http://bzr.savannah.nongnu.org/r/pdsplibrary/libpdsdatafunc
-cd libpdsdatafunc\extras\qtcreator
+set PDSLIB=libpdsdatafunc
+rmdir /S /Q %PDSLIB%
+bzr branch http://bzr.savannah.nongnu.org/r/pdsplibrary/%PDSLIB%
+cd %PDSLIB%\extras\qtcreator
 timeout 3 > NUL
 
 :hito1
-if EXIST "..\\..\\..\\build\\extras\\lib\\libpdsdatafunc.a" (
+if EXIST "..\\..\\..\\build\\extras\\lib\\%PDSLIB%.a" (
     dir ..\..\..\build\extras\lib\
     echo The lib files were installed 
 
@@ -31,7 +32,7 @@ if EXIST "..\\..\\..\\build\\extras\\lib\\libpdsdatafunc.a" (
     timeout 3 > NUL
     echo The lib files were not installed trying newly
 
-    "%QT_TOOLS_PATH%\qmake.exe" libpdsdatafunc.pro -spec win32-g++ PREFIX=..\..\..\build\extras
+    "%QT_TOOLS_PATH%\qmake.exe" %PDSLIB%.pro -spec win32-g++ PREFIX=..\..\..\build\extras
     "%QT_TOOLS_MINGW_PATH%\mingw32-make.exe"
     "%QT_TOOLS_MINGW_PATH%\mingw32-make.exe" install
 
@@ -40,56 +41,59 @@ if EXIST "..\\..\\..\\build\\extras\\lib\\libpdsdatafunc.a" (
 )
 cd ..\..\..\
 
+
 rem ----------------------------------------------------------------------------
 rem ----------------------------------------------------------------------------
-rmdir /S /Q libpdsra
-bzr branch http://bzr.savannah.nongnu.org/r/pdsplibrary/libpdsra
-cd libpdsra\extras\qtcreator
+set PDSLIB=libpdsra
+rmdir /S /Q %PDSLIB%
+bzr branch http://bzr.savannah.nongnu.org/r/pdsplibrary/%PDSLIB%
+cd %PDSLIB%\extras\qtcreator
 timeout 3 > NUL
 
 :hito2
-if EXIST "..\\..\\..\\build\\extras\\lib\\libpdsra.a" (
+if EXIST "..\\..\\..\\build\\extras\\lib\\%PDSLIB%.a" (
     dir ..\..\..\build\extras\lib\
     echo The lib files were installed 
-
 ) else (
     dir ..\..\..\build\extras\lib\
     timeout 3 > NUL
     echo The lib files were not installed trying newly
 
-    "%QT_TOOLS_PATH%\qmake.exe" libpdsra.pro -spec win32-g++ PREFIX=..\..\..\build\extras
+    "%QT_TOOLS_PATH%\qmake.exe" %PDSLIB%.pro -spec win32-g++ PREFIX=..\..\..\build\extras
     "%QT_TOOLS_MINGW_PATH%\mingw32-make.exe"
     "%QT_TOOLS_MINGW_PATH%\mingw32-make.exe" install
-
-
     goto :hito2
 )
 cd ..\..\..\
 
+
 rem ----------------------------------------------------------------------------
 rem ----------------------------------------------------------------------------
-rmdir /S /Q libpdsdic
-bzr branch http://bzr.savannah.nongnu.org/r/pdsplibrary/libpdsdic
-cd libpdsdic\extras\qtcreator
+set PDSLIB=libpdsdic
+rmdir /S /Q %PDSLIB%
+bzr branch http://bzr.savannah.nongnu.org/r/pdsplibrary/%PDSLIB%
+cd %PDSLIB%\extras\qtcreator
 timeout 3 > NUL
 
 :hito3
-if EXIST "..\\..\\..\\build\\extras\\lib\\libpdsdic.a" (
+if EXIST "..\\..\\..\\build\\extras\\lib\\%PDSLIB%.a" (
     dir ..\..\..\build\extras\lib\
     echo The lib files were installed 
-
 ) else (
     dir ..\..\..\build\extras\lib\
     timeout 3 > NUL
     echo The lib files were not installed trying newly
 
-    "%QT_TOOLS_PATH%\qmake.exe" libpdsdic.pro -spec win32-g++ PREFIX=..\..\..\build\extras
+    "%QT_TOOLS_PATH%\qmake.exe" %PDSLIB%.pro -spec win32-g++ PREFIX=..\..\..\build\extras
     "%QT_TOOLS_MINGW_PATH%\mingw32-make.exe"
     "%QT_TOOLS_MINGW_PATH%\mingw32-make.exe" install
-
     goto :hito3
 )
 cd ..\..\..\
+
+
+
+
 rem ----------------------------------------------------------------------------
 rem ----------------------------------------------------------------------------
 mkdir output

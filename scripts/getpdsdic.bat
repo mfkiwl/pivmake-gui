@@ -1,6 +1,6 @@
 set QT_TOOLS_MINGW_PATH=C:\Qt\Qt5.8.0\Tools\mingw530_32\bin
 set QT_TOOLS_PATH=C:\Qt\Qt5.8.0\5.8\mingw53_32\bin
-set MYLIBRARY=libpdsdatafunc
+set MYLIBRARY=libpdsdic
 
 SET BATCHDIR=%~dp0
 

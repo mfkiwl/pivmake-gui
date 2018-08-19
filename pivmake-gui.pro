@@ -22,7 +22,7 @@ TEMPLATE = app
 
 DESTDIR=bin
 CONFIG += release
-win32:CONFIG += console
+#win32:CONFIG += console
 
 
 
@@ -33,7 +33,7 @@ win32:CONFIG += console
 #LIBPDSDATAFUNC
 extralibpdsdatafunc.target   = $${OUT_PWD}/extras/include/pds/pdsdatafunc.h
 win32{
-extralibpdsdatafunc.commands = $${PWD}/scripts/getpdsdatafunc.bat "$${OUT_PWD}\extras"
+extralibpdsdatafunc.commands = $${PWD}/scripts/getpdsdatafunc.bat \"$${OUT_PWD}/extras\"
 }
 unix{
 extralibpdsdatafunc.commands = $${PWD}/scripts/getpdsdatafunc.sh "$${OUT_PWD}/extras"
@@ -45,7 +45,12 @@ PRE_TARGETDEPS              += $${OUT_PWD}/extras/include/pds/pdsdatafunc.h
 
 #LIBPDSRA
 extralibpdsra.target   = $${OUT_PWD}/extras/include/pds/pdsra.h
+win32{
+extralibpdsra.commands = $${PWD}/scripts/getpdsra.bat \"$${OUT_PWD}/extras\"
+}
+unix{
 extralibpdsra.commands = $${PWD}/scripts/getpdsra.sh "$${OUT_PWD}/extras"
+}
 extralibpdsra.depends  =
 QMAKE_EXTRA_TARGETS   += extralibpdsra
 LIBS                  += $${OUT_PWD}/extras/lib/libpdsra.a
@@ -53,7 +58,12 @@ PRE_TARGETDEPS        += $${OUT_PWD}/extras/include/pds/pdsra.h
 
 #LIBPDSDIC
 extralibpdsdic.target   = $${OUT_PWD}/extras/include/pds/pdsdic.h
+win32{
+extralibpdsdic.commands = $${PWD}/scripts/getpdsdic.bat \"$${OUT_PWD}/extras\"
+}
+unix{
 extralibpdsdic.commands = $${PWD}/scripts/getpdsdic.sh "$${OUT_PWD}/extras"
+}
 extralibpdsdic.depends  = extralibpdsra
 QMAKE_EXTRA_TARGETS    += extralibpdsdic
 LIBS                   += $${OUT_PWD}/extras/lib/libpdsdic.a
