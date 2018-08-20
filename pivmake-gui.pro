@@ -133,6 +133,8 @@ FORMS    += ui/mainwindow.ui
 RESOURCES += \
     $${TARGET}.qrc
 
+RC_FILE = $${TARGET}.rc
+
 ################################################################################
 ## INSTALL SCRIPT
 ################################################################################
@@ -214,6 +216,7 @@ DISTFILES += \
     deb/control.input \
     deb/makedeb.sh \
     deb/README.md \
+    $${TARGET}.rc \
     clean_all.sh  \
     ChangeLog  \
     README.md \

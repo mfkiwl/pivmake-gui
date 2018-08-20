@@ -25,16 +25,16 @@ echo ''
 DEBFILENAME="${APPFILENAME}_${APPVERSION}_${APPARCH}".deb
 dpkg-deb --build $INSTALLBASE $DEBFILENAME
 
-gpg -b --use-agent $DEBFILENAME
+#gpg -b --use-agent $DEBFILENAME
 #
 echo ""
 echo "To install please do:"
 echo "                      sudo dpkg -i $DEBFILENAME"
 echo ""
-echo "To upload please do:"
-echo "                     rsync $DEBFILENAME     trucomanx@dl.sv.nongnu.org:/releases/${APPFILENAME}-project/${APPFILENAME}/"
-echo "                     rsync $DEBFILENAME.sig trucomanx@dl.sv.nongnu.org:/releases/${APPFILENAME}-project/${APPFILENAME}/"
-echo ""
+#echo "To upload please do:"
+#echo "                     rsync $DEBFILENAME     trucomanx@dl.sv.nongnu.org:/releases/${APPFILENAME}-project/${APPFILENAME}/"
+#echo "                     rsync $DEBFILENAME.sig trucomanx@dl.sv.nongnu.org:/releases/${APPFILENAME}-project/${APPFILENAME}/"
+#echo ""
 rm -r -f ${INSTALLBASE}
 
 
