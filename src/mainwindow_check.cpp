@@ -5,6 +5,7 @@
 #include <QFile>
 // #include <QFileDialog>
 #include <QMessageBox>
+#include <QTextStream>
 
 // #include <QDebug>
 // #include <QScrollBar>
@@ -86,14 +87,16 @@ bool MainWindow::check_listfilesdat_value(void)
     QFile inputFile(listfilesdat);
     if ( inputFile.open(QIODevice::ReadOnly | QIODevice::Text) )
     {
-       while (!inputFile.atEnd())
+        QTextStream in(&inputFile);
+       while (!in.atEnd())
        {
           // Returns a string that has whitespace removed from the start and the end.
-          QString imagePath = inputFile.readLine().trimmed();
-
+          QString imagePath = in.readLine().trimmed();
+          //launchMessageBox(imagePath);
+          //launchMessageBox(imagePath.toUtf8());
           if(imagePath.length()>0)
           {
-              if(fileExists(imagePath)==true)
+              if(fileExists(imagePath )==true)
               {
                   ImageFilePathList.append(imagePath);
               }
