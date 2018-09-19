@@ -122,11 +122,9 @@ void MainWindow::on_lineEdit_listfilesdat_editingFinished()
     if(ui->lineEdit_output_directory->text().length()==0)
     {
         QString tmp=ui->lineEdit_listfilesdat->text();
-        QByteArray ba = tmp.toUtf8();
-        const char *c_str2 = ba.data();
-        char *cad=pds_get_dirname(c_str2);
-        ui->lineEdit_output_directory->setText(QString(cad)+QDir::separator()+QString("output"));
-        free(cad);
+        QFileInfo info = QFileInfo(tmp);
+
+        ui->lineEdit_output_directory->setText( info.path()+"/"+QString("output"));
     }
 
 }

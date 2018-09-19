@@ -21,7 +21,7 @@ bool MainWindow::check_listregionsdat_value(void)
     }
 
     QString listregionsdat=ui->lineEdit_listregionsdat->text();
-    QByteArray ba = listregionsdat.toUtf8();
+    QByteArray ba = listregionsdat.toLocal8Bit();
     const char *strchar = ba.data();
 
     int N=pds_get_number_of_significative_lines(strchar);
@@ -70,7 +70,7 @@ bool MainWindow::check_listfilesdat_value(void)
     }
 
     QString listfilesdat=ui->lineEdit_listfilesdat->text();
-    QByteArray ba = listfilesdat.toUtf8();
+    QByteArray ba = listfilesdat.toLocal8Bit();
     const char *strchar = ba.data();
 
     int N=pds_get_number_of_significative_lines(strchar);
