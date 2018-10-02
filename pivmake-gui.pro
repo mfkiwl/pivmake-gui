@@ -120,11 +120,13 @@ SOURCES += src/main.cpp\
     src/mainwindow_messages.cpp \
     src/mainwindow_state.cpp \
     src/mainwindow_enable_widget.cpp \
-    src/mainwindow_action.cpp
+    src/mainwindow_action.cpp \
+    src/myplot.cpp
 
 INCLUDEPATH += headers
 HEADERS  += headers/mainwindow.h \ 
-            headers/mythread.h
+            headers/mythread.h \
+    headers/myplot.h
 
 
 FORMS    += ui/mainwindow.ui

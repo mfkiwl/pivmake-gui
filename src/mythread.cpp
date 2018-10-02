@@ -1,4 +1,5 @@
 #include "mythread.h"
+#include "myplot.h"
 #include <stdio.h>
 #include <pds/pdsra.h>
 #include <pds/pdsdic.h>
@@ -8,6 +9,7 @@
 #include <QTextStream>
 #include <QFont>
 #include <math.h>
+
 
 mythread::mythread(QObject *parent):QThread(parent)
 {
@@ -23,6 +25,8 @@ void mythread::run()
     QList<PdsRegionRect> InputRegionList;
     QList<PdsRegionRect> OutputRegionList;
 
+    QList< QList<PdsRegionRect> > RegionListList;
+
     if(ImageFilePathList.length()>1)
     if(RegionRectList.length()>0)
     if(output_filename_pattern.length()>0)
@@ -34,6 +38,7 @@ void mythread::run()
         int N=RegionRectList.length();
 
         OutputRegionList=RegionRectList;
+        RegionListList.append(OutputRegionList);
 
         QString imagepath=ImageFilePathList.at(0);
         PdsMatrix *Mat0=matrix_from_image_filepath(imagepath);
@@ -56,6 +61,8 @@ void mythread::run()
         for(int i=1;i<M;i++)
         {
             InputRegionList=OutputRegionList;
+
+            for(int j=0;j<N;j++)    OutputRegionList.replace(j,pds_region_rect(0,0,0,0));
 
             imagepath=ImageFilePathList.at(i);
             PdsMatrix *Mat=matrix_from_image_filepath(imagepath);
@@ -93,12 +100,30 @@ void mythread::run()
                 emit signal_mythread_message_red(tr("ERROR writing the image in the DIC structure."));
             }
 
+            RegionListList.append(OutputRegionList);
+
             pds_matrix_free(Mat);
         }
 
-        save_image_region_list_distance(ImageFilePathList.at(0),output_directory,output_filename_pattern,RegionRectList,OutputRegionList);
-        save_image_region_list_pcolor(ImageFilePathList.at(0),output_directory,output_filename_pattern,RegionRectList,OutputRegionList,false);
+        QString directory;
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        directory=output_directory+QDir::separator()+"global1";
+        QDir pathDir(directory);
+        if((pathDir.exists()==false)&& (QDir().mkdir(directory)==false) )
+        emit signal_mythread_message_red(tr("ERROR creating the directory:: ")+directory);
 
+        save_image_region_list_distance(ImageFilePathList.at(0),directory,output_filename_pattern,RegionRectList,OutputRegionList);
+        save_image_region_list_pcolor  (ImageFilePathList.at(0),directory,output_filename_pattern,RegionRectList,OutputRegionList,false);
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        directory=output_directory+QDir::separator()+"global2";
+        QDir pathDir2(directory);
+        if((pathDir2.exists()==false)&& (QDir().mkdir(directory)==false) )
+        emit signal_mythread_message_red(tr("ERROR creating the directory:: ")+directory);
+
+        save_region_list_plot( directory,output_filename_pattern,RegionListList);
+        ////////////////////////////////////////////////////////////////////////////////////////////
 
         emit signal_mythread_workended();
         pds_dic2d_free(DIC);
@@ -214,6 +239,16 @@ bool mythread::save_image_region_list(QString inputfilepath,QString outputtextfi
     return true;
 }
 
+
+
+bool mythread::save_region_list_plot(   QString directory,
+                                        QString pattern,
+                                        QList< QList<PdsRegionRect> > RegionListList)
+{
+    MyPlot plot;
+    plot.Save(directory+QDir::separator()+pattern+"_dist.Vert"+output_file_format);
+    return true;
+}
 
 bool mythread::save_image_region_list_distance( QString ImagePath,
                                                 QString directory,

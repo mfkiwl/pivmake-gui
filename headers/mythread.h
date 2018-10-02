@@ -42,6 +42,10 @@ public:
                                           QList<PdsRegionRect> RegionListInit,
                                           QList<PdsRegionRect> RegionListEnd);
 
+    bool save_region_list_plot( QString directory,
+                                QString output_filename_pattern,
+                                QList< QList<PdsRegionRect> > RegionListList);
+
     bool save_image_region_list_pcolor(   QString ImagePath,
                                           QString directory,
                                           QString pattern,
