@@ -7,7 +7,7 @@
 #include <QMessageBox>
 #include <QTextStream>
 
-// #include <QDebug>
+#include <QDebug>
 // #include <QScrollBar>
 #include <pds/pdsdatafunc.h>
 #include <pds/pdsra.h>
@@ -42,19 +42,30 @@ bool MainWindow::check_listregionsdat_value(void)
 
     RegionRectList.clear();
 
+    //qDebug()<<"nc:"<<nc<<"\tnl:"<<nl<<"\n";
+
+
     PdsRegionRect R;
     fd=fopen(strchar,"r");
-    while(feof(fd)==0)
+    int count=0;
+    while((feof(fd)==0)&&(count<N))
     {
         int ID=pds_region_rect_next_nospace_fscanf(fd,&R);
-        if(ID==PDS_OK)  RegionRectList.append(R);
-        else
+        if(ID==PDS_OK)
         {
-            RegionRectList.clear();
-            return false;
+            RegionRectList.append(R);
+            count=count+1;
         }
+
     }
     fclose(fd);
+
+    if(count!=N)
+    {
+        //qDebug()<<"FALSE\n";
+        RegionRectList.clear();
+        return false;
+    }
 
     return true;
 }

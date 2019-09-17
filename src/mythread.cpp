@@ -245,8 +245,27 @@ bool mythread::save_region_list_plot(   QString directory,
                                         QString pattern,
                                         QList< QList<PdsRegionRect> > RegionListList)
 {
-    MyPlot plot;
-    plot.Save(directory+QDir::separator()+pattern+"_dist.Vert"+output_file_format);
+    int NumImages=RegionListList.size();
+    int NumRegions=RegionListList.at(0).size();
+
+    for(int i=0;i<NumRegions;i++)
+    {
+        MyPlot plot(800,600);
+
+        QList<double> X;
+        for(int j=0;j<NumImages;j++)
+        X.append(j*1.0);
+
+
+        QList<double> Y;
+        for(int j=0;j<NumImages;j++)
+        Y.append(RegionListList.at(j).at(i).L0-RegionListList.at(0).at(i).L0);
+
+
+        QString Filedat=directory+QDir::separator()+pattern+"_plot"+QString::number(i)+output_file_format;
+
+        plot.Print(Filedat,X,Y,"Image ID","Pixel");
+    }
     return true;
 }
 

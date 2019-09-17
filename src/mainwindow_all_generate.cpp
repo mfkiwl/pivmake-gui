@@ -8,9 +8,14 @@
 
 void MainWindow::on_pushButton_generate_outfiles_clicked()
 {
-    if(check_listfilesdat_value()==true)
-    if(check_listregionsdat_value()==true)
+    if(check_listfilesdat_value()==false)
+        set_message_in_listwidget(QString(tr("check_listfilesdat_value==false")),Qt::red);
+    else if(check_listregionsdat_value()==false)
+        set_message_in_listwidget(QString(tr("check_listregionsdat_value==false")),Qt::red);
+    else
     {
+        set_message_in_listwidget(QString(tr("Working please wait.")),Qt::black);
+
         // deshabilito el boton GENERATE
         enable_generate_all_widgets(false);
 
